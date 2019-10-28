@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "bsato212-firebase"
+  },
+  "targets": {
+    "bsato212-firebase": {
+      "hosting": {
+        "snhu-it700-angular": [
+          "snhu-it700"
+        ]
+      }
+    }
+  }
+}
