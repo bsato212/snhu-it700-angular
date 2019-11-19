@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { environment } from '../environments/environment';
 import { GetLocationComponent } from './get-location/get-location.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { GetLocationComponent } from './get-location/get-location.component';
     FooterComponent,
     HomeComponent,
     GetLocationComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,7 @@ import { GetLocationComponent } from './get-location/get-location.component';
     AngularFireModule.initializeApp(environment.firebase, 'snhu'),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    BsDropdownModule.forRoot(),
+    AlertModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
