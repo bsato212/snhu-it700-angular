@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +34,10 @@ import { RegisterComponent } from './register/register.component';
     AngularFireModule.initializeApp(environment.firebase, 'snhu'),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    BrowserAnimationsModule,
+    ButtonsModule.forRoot(),
     AlertModule.forRoot(),
+    CollapseModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
