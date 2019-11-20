@@ -17,6 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { environment } from '../environments/environment';
 import { GetLocationComponent } from './get-location/get-location.component';
 import { RegisterComponent } from './register/register.component';
+import { ListingsComponent } from './listings/listings.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     GetLocationComponent,
     RegisterComponent,
+    ListingsComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

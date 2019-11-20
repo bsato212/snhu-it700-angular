@@ -5,6 +5,8 @@ import { AngularFireAuthGuard, redirectUnauthorizedTo, redirectLoggedInTo } from
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { GetLocationComponent } from './get-location/get-location.component';
+import { ListingsComponent } from './listings/listings.component';
+import { ChatComponent } from './chat/chat.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['home']);
 const redirectLoggedInToGetLocation = () => redirectLoggedInTo(['get-location']);
@@ -32,6 +34,22 @@ const routes: Routes = [
   {
     path: 'get-location',
     component: GetLocationComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectUnauthorizedToLogin,
+    },
+  },
+  {
+    path: 'listings',
+    component: ListingsComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectUnauthorizedToLogin,
+    },
+  },
+  {
+    path: 'chat',
+    component: ChatComponent,
     canActivate: [AngularFireAuthGuard],
     data: {
       authGuardPipe: redirectUnauthorizedToLogin,

@@ -1,0 +1,29 @@
+<main>
+
+  <div class="container my-3">
+
+    <div class="row">
+      <div class="col-lg"></div>
+      <div class="col text-center my-3">
+        <h1>Listings for <span class="text-primary">{{ state }}</span></h1>
+        <div class="card my-3" *ngFor="let listing of listings | async">
+          <div class="card-header">
+            {{ listing.city }}, {{ listing.state }}
+          </div>
+          <div class="card-body">
+            <h2 class="card-title">{{ listing.name }}</h2>
+            <p class="card-text">{{ listing.description }}</p>
+            <p class="card-text">{{ listing.address }}</p>
+            <p class="card-text">{{ listing.phone }}</p>
+            <a href="//{{ listing.website }}" class="btn btn-info">Website</a>
+            <button type="button" class="btn btn-info mx-2" *ngIf="listing.online" (click)="onChat(listing.name)">Chat</button>
+          </div>
+          <div class="card-footer {{ listing.online ? 'bg-success' : 'bg-danger' }}">{{ listing.online ? 'Online' : 'Offline' }}</div>
+        </div>
+      </div>
+      <div class="col-lg"></div>
+    </div>
+
+  </div>
+
+</main>
