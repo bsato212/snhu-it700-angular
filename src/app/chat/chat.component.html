@@ -3,11 +3,24 @@
   <div class="container my-3">
 
     <div class="row">
-      <div class="col-lg"></div>
       <div class="col text-center my-3">
-        <h1>Chatting{{ name }}</h1>
+        <h1>Chatting with <span class="text-primary">{{ name }}</span></h1>
+
+        <div class="card my-3 {{ message.name === 'You' ? 'text-right' : 'text-left' }}" *ngFor="let message of messages">
+          <div class="card-header">{{ message.name }} &mdash; {{ message.ts | date: 'short' }}</div>
+          <div class="card-body">
+            <p class="card-text">{{ message.text }}</p>
+          </div>
+        </div>
+
+        <div class="input-group my-3">
+          <input type="text" class="form-control" placeholder="type your message..." aria-label="Message" aria-describedby="button-addon2" #input>
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" id="button-addon2" (click)="onSend(input.value); input.value=''">Send</button>
+          </div>
+        </div>
+
       </div>
-      <div class="col-lg"></div>
     </div>
 
   </div>
