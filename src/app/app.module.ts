@@ -20,6 +20,8 @@ import { GetLocationComponent } from './get-location/get-location.component';
 import { RegisterComponent } from './register/register.component';
 import { ListingsComponent } from './listings/listings.component';
 import { ChatComponent } from './chat/chat.component';
+import { InstitutionComponent } from './institution/institution.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { ChatComponent } from './chat/chat.component';
     RegisterComponent,
     ListingsComponent,
     ChatComponent,
+    InstitutionComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

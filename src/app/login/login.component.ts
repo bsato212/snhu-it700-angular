@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private db: AngularFirestore,
     private afAuth: AngularFireAuth,
   ) {
     this.loading = false;
@@ -26,8 +28,14 @@ export class LoginComponent implements OnInit {
 
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(cred => {
-        console.log(cred);
-        this.router.navigate(['get-location']);
+        const ref = this.db.collection('users').doc(cred.user.uid).ref;
+        ref.get().then(user => {
+          if (user && user.data && user.data()) {
+            this.router.navigate(['admin']);
+          } else {
+            this.router.navigate(['get-location']);
+          }
+        });
       })
       .catch(err => {
         this.loading = false;
@@ -36,13 +44,26 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  onKey(event, email: string, password: string) {
+    if (event.key === 'Enter') {
+      this.login(email, password);
+    }
+  }
+
   googleLogin(): void {
     this.loading = true;
 
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-      .then(user => {
-        console.log(user);
-        this.router.navigate(['get-location']);
+      .then(cred => {
+        console.log(cred);
+        const ref = this.db.collection('users').doc(cred.user.uid).ref;
+        ref.get().then(user => {
+          if (user && user.data && user.data()) {
+            this.router.navigate(['admin']);
+          } else {
+            this.router.navigate(['get-location']);
+          }
+        });
       })
       .catch(err => {
         this.loading = false;

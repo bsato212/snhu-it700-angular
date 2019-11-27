@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { switchMap, take } from 'rxjs/operators';
+
+interface CustomUser {
+  admin: boolean;
+  institution: string;
+}
 
 @Component({
   selector: 'app-get-location',
@@ -11,6 +19,8 @@ export class GetLocationComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private afAuth: AngularFireAuth,
+    private db: AngularFirestore,
   ) {
     this.states = [
       'Alabama',
@@ -66,7 +76,17 @@ export class GetLocationComponent implements OnInit {
     ];
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.afAuth.user.pipe(
+      take(1),
+      switchMap(authUser => this.db.collection('users').doc<CustomUser>(authUser.uid).valueChanges()),
+      take(1),
+    ).subscribe(user => {
+      if (user && user.admin) {
+        this.router.navigate(['admin']);
+      }
+    });
+  }
 
   onNext(selected: string) {
     this.router.navigate(['listings'], { queryParams: { state: selected } });

@@ -4,13 +4,13 @@
 
     <div class="row">
       <div class="col-lg"></div>
-      <div class="col text-center my-3">
+      <div class="col-xl-6 text-center my-3">
         <h1>What is your <span class="text-primary">location</span>?</h1>
         <form>
           <div class="form-group">
             <label for="exampleFormControlSelect1">State</label>
             <select class="form-control" id="exampleFormControlSelect1" #select>
-              <option *ngFor="let state of states">{{ state }}</option>
+              <option *ngFor="let state of states" [disabled]="state !== 'New Hampshire'" [selected]="state === 'New Hampshire'">{{ state }}</option>
             </select>
           </div>
           <button type="button" class="btn btn-primary" (click)="onNext(select.options[select.selectedIndex].label)">Next</button>

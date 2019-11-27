@@ -25,12 +25,22 @@ export class ChatComponent implements OnInit {
     this.messages = [];
   }
 
-  onSend(text: string) {
+  onSend(input: any) {
+    const text = input.value;
+
+    if (!text.length) {
+      return;
+    }
+
+    input.value = '';
+
     this.messages.push({
       text,
       ts: Date.now(),
       name: 'You',
     });
+
+    input.scrollIntoView();
 
     setTimeout(() => {
       this.messages.push({
@@ -38,6 +48,14 @@ export class ChatComponent implements OnInit {
         ts: Date.now(),
         name: this.name,
       });
+
+      input.scrollIntoView();
     }, 1000);
+  }
+
+  onKey(event, input) {
+    if (event.key === 'Enter') {
+      this.onSend(input);
+    }
   }
 }

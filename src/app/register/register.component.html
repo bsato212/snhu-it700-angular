@@ -17,7 +17,7 @@
           </div>
           <div class="form-group">
             <label for="exampleInputPassword2">Confirm Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" aria-label="Password" #password2>
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" aria-label="Password" #password2 (keydown)="onKey($event, email.value, password1.value, password2.value)">
           </div>
           <div class="text-center">
             <button type="button" class="btn btn-primary" (click)="onRegister(email.value, password1.value, password2.value)" [disabled]="loading">

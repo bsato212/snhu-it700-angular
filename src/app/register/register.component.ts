@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() { }
 
-  onRegister(email, password1, password2) {
+  onRegister(email: string, password1: string, password2: string) {
     if (password1 !== password2) {
       this.errorMessage = 'Passwords do not match.';
       return;
@@ -38,5 +38,11 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = err.message;
         console.error(err);
       });
+  }
+
+  onKey(event, email: string, password1: string, password2: string) {
+    if (event.key === 'Enter') {
+      this.onRegister(email, password1, password2);
+    }
   }
 }
